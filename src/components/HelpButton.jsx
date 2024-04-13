@@ -5,7 +5,6 @@ import { useSubjectContext } from "../contexts/SubjectContext"
 import { useScoreContext } from "../contexts/ScoreContext"
 import { useIsAnsweredContext } from "../contexts/IsAnsweredContext"
 import { useTimerContext } from "../contexts/TimerContext"
-import { Tooltip } from 'react-tooltip'
 import {
     Modal,
     ModalOverlay,
@@ -14,7 +13,8 @@ import {
     ModalFooter,
     ModalBody,
     useDisclosure,
-    Button
+    Button,
+    Tooltip
   } from '@chakra-ui/react'
 import { useState } from "react"
 
@@ -62,13 +62,12 @@ export default function HelpButton() {
                 </ModalContent>
             </Modal>
             {!isAnswered && timer != 0 && 
-                <Button 
-                    onClick={getHelp}
-                    data-tooltip-id="hint-tooltip"
-                    data-tooltip-content={score < 5 ? "Not enough points to get a hint!" : "Click to get a hint" }
-                    data-tooltip-place="top">Get a hint</Button>
+                <Tooltip 
+                    label={score < 5 ? "Not enough points to get a hint!" : "Click to get a hint" }
+                    placement="top"
+                    hasArrow
+                ><Button onClick={getHelp}>Get a hint</Button></Tooltip>
             }
-            <Tooltip id="hint-tooltip" />
         </section>
     )
 }
