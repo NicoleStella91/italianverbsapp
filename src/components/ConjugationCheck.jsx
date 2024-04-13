@@ -19,10 +19,11 @@ export default function ConjugationCheck () {
     const { timer, timerExpired, setTimerExpired } = useTimerContext()
 
     const correctAnswer = verbData[infinitiveIndex].tenses[tense] ? verbData[infinitiveIndex].tenses[tense][subjectIndex] : null
+    const answerLowerCase = answer.toLowerCase()
 
     const handleCheck = () => {
         setIsAnswered(true)
-        if(answer === correctAnswer) {
+        if(answerLowerCase === correctAnswer) {
             setIsCorrect(true)
             increaseScore()
         } else {
